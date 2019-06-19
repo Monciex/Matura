@@ -1,0 +1,68 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+import static java.lang.Math.*;
+
+class Main {
+
+
+    public static void main(String[] args) throws FileNotFoundException {
+
+        String wiersz;
+        int[] liczby = new int[500];
+        int liczba;
+        File plik = new File("D:\\liczby.txt");
+        Scanner skaner = new Scanner(plik);
+
+        int i = 0;
+        while (skaner.hasNextLine()) {
+            wiersz = skaner.nextLine();
+            liczby[i] = Integer.parseInt(wiersz);
+            i++;
+        }
+        System.out.println("---Liczby ktorych potegami jest liczba 3---");
+
+        for (int x = 0; x < liczby.length; x++) {
+
+            for (double j = 0; j < liczby.length; j++) {
+
+                if (pow(3, j) == liczby[x]) {
+                    System.out.println(liczby[x]);
+                } else if (pow(3, j) > liczby[x]) {
+                    break;
+                }
+            }
+        }
+        System.out.println("--------Silnia---------");
+        // Silnia
+
+        for (int q = 0; q < liczby.length; q++) {
+
+            String number = Integer.toString(liczby[q]);
+            char[] wynik = number.toCharArray();
+            int result;
+            int odp = 0;
+
+
+            for (int p = 0; p < wynik.length; p++) {
+                result = Character.getNumericValue(wynik[p]);
+                int silnia = 1;
+                for (int z = 1; z <= result; z++) {
+                    silnia = silnia * z;
+
+                }
+                odp = odp+silnia;
+
+            }
+            if(odp == liczby[q]) {
+                System.out.println("Taka sama sume silni posiada liczba " +liczby[q] + " na indexie " + q);
+            }
+
+
+
+
+        }
+    }
+}
